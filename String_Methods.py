@@ -131,7 +131,78 @@ class stringm:
             if found:
                 return i
         return -1
-    
+    #index         
+    def Index(self,word,subs:int):
+        '''-------------- Mouni'''
+        for i in range(len(word) - len(subs) + 1):
+                if word[i:i+len(subs)] == subs:
+                    return i
+        raise ValueError('substring not found')
+    #isalnum
+    def Isaln(self,word):
+        '''-------------- Mouni'''
+        for ele in word:
+
+            if not (65 <= ord(ele) <= 90 or 97 <= ord(ele) <= 122 or 48 <= ord(ele) <= 57):
+                return False
+        return True
+    # isascii
+    def Isascii(self,word):
+        '''-------------- Manoj'''
+        for ele in word:
+            if ord(ele) > 127:
+                return False
+        return True
+    #isalpha
+    def Isalpha(self,word):
+        '''-------------- Manoj'''
+        for ele in word:
+            if not (65 <= ord(ele) <= 90 or 97 <= ord(ele) <= 122):
+                return False
+        return True
+    #isdigit
+    def s_isdigit(self,word):
+        '''-------------- Sai'''
+        for ele in word:
+            if not (48 <= ord(ele) <= 57):
+                return False
+        return True
+    #islower
+    def s_islower(self,word):
+        '''-------------- Sai'''
+        for ele in word:
+            if not (97 <= ord(ele) <= 122):
+                return False
+        return True
+    #isupper
+    def s_isupper(self,word):
+        '''-------------- Sonu'''
+        for ele in word:
+            if not (65 <= ord(ele) <= 90):
+                return False
+        return True
+    # isnumeric
+    def s_isnumaric(self,word):
+        '''-------------- Sonu'''
+        for ele in word:
+            if not (48 <= ord(ele) <= 57):
+                return False
+        return True
+    #join
+    def Join(self,word,sep):
+        '''-------------- Swetha'''
+        result = ""
+        for i in range(len(word)):
+            result += word[i]
+            if i != len(word) - 1:
+                result += sep
+        return result
+    #ljust
+    def Ljust(self,word,width):
+        '''-------------- Swetha'''
+        while len(word) < width:
+            word += " "
+        return word
     
     
     
