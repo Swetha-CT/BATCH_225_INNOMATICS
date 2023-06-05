@@ -1184,6 +1184,7 @@ class Leetcode:
 
     def is_even(num, index):
         return num % 2 == 0
+    
 
 
 if __name__ == "__main__":
@@ -1191,3 +1192,151 @@ if __name__ == "__main__":
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     fn = Leetcode.is_even
 
+#1742: Maximum Number of Balls in a Box
+    @staticmethod
+    def sum_of_digits(digit,sum=0):
+        sum=0
+        while digit:
+            sum+=digit%10
+            digit=digit//10
+        return sum
+    def lc_1742(self,lowerLimit,highLimit):
+        
+        '''
+        You are working in a ball factory where you have n balls numbered from lowLimit up to highLimit inclusive 
+        (i.e., n == highLimit - lowLimit + 1), and an infinite number of boxes numbered from 1 to infinity.
+        Your job at this factory is to put each ball in the box with a number equal to the sum of digits of the ball's number. 
+        For example, the ball number 321 will be put in the box number 3 + 2 + 1 = 6 and the ball number 
+        10 will be put in the box number 1 + 0 = 1.
+        Given two integers lowLimit and highLimit, return the number of balls in the box with the most balls.
+
+        Example 1:
+        Input: lowLimit = 1, highLimit = 10
+        Output: 2
+        Explanation:
+        Box Number:  1 2 3 4 5 6 7 8 9 10 11 ...
+        Ball Count:  2 1 1 1 1 1 1 1 1 0  0  ...
+        Box 1 has the most number of balls with 2 balls.
+             --------------------------------------------------- Swetha
+        '''
+        my_dict={}
+        for i in range(lowerLimit,highLimit+1):
+            sum=sum_of_digits(i)
+            if sum in my_dict:
+                my_dict[sum]+=1
+            else:
+                my_dict[sum]=1
+        return max(my_dict.values())
+    
+#1929: Concatenation of Array
+
+    def lc_1929(self,nums:list[int]):
+
+        '''
+        Given an integer array nums of length n, you want to create an array ans of length 2n 
+        where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
+        Specifically, ans is the concatenation of two nums arrays.
+        Return the array ans.
+
+        Example 1:
+
+        Input: nums = [1,2,1]
+        Output: [1,2,1,1,2,1]
+        Explanation: The array ans is formed as follows:
+        - ans = [nums[0],nums[1],nums[2],nums[0],nums[1],nums[2]]
+        - ans = [1,2,1,1,2,1]
+          ------------------------------------------------------------Swetha
+        '''
+
+        return nums*2
+
+    
+    
+    
+#762: Prime Number of Set Bits in Binary Representation
+    @staticmethod
+    def is_prime(n):
+
+        '''
+        Given two integers left and right, return the count of numbers in the inclusive range [left, right] 
+        having a prime number of set bits in their binary representation.
+        Recall that the number of set bits an integer has is the number of 1's present when written in binary.
+        For example, 21 written in binary is 10101, which has 3 set bits. 
+
+        Example 1:
+        Input: left = 6, right = 10
+        Output: 4
+        Explanation:
+        6  -> 110 (2 set bits, 2 is prime)
+        7  -> 111 (3 set bits, 3 is prime)
+        8  -> 1000 (1 set bit, 1 is not prime)
+        9  -> 1001 (2 set bits, 2 is prime)
+        10 -> 1010 (2 set bits, 2 is prime)
+        4 numbers have a prime number of set bits.
+                        ----------------------------------Swetha
+        '''
+
+        if n<2:
+            return False
+        for i in range(2,(n//2)+1):
+            if n%i==0:
+                return False
+        return True
+
+    #left=int(input())
+    #right=int(input())
+
+    def lc_762(self):
+
+        count=0
+        for i in range(6,10+1):
+            x=(str(bin(i))[2:])
+            if is_prime(x.count('1')):
+                count+=1
+        return count
+    
+ #1470: Shuffle the Array
+
+    def lc_1470(self, nums:list[int], n):
+        
+        '''
+        Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+        Return the array in the form [x1,y1,x2,y2,...,xn,yn]. 
+        Example 1:
+        Input: nums = [2,5,1,3,4,7], n = 3
+        Output: [2,3,5,4,1,7] 
+        Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+          ----------------------------------------------- Swetha
+        '''
+        
+        x=nums[0:n]
+        y=nums[n:]
+        new_arr=[]
+        for i in range(n):
+            new_arr.append(x[i])
+            new_arr.append(y[i])
+        return new_arr
+    
+#509: Fibonacci Number    
+    def lc_509(self, n: int) -> int:
+                
+        '''
+        The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, 
+        such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
+        F(0) = 0, F(1) = 1
+        F(n) = F(n - 1) + F(n - 2), for n > 1.
+        Given n, calculate F(n).
+        Example 1:
+        Input: n = 2
+        Output: 1
+        Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
+          -------------------------------------------------- Swetha
+        '''
+        
+        if n==0:
+            return 0
+        if n==1:
+            return 1
+        else:
+            
+            return self.lc_509(n-1)+self.lc_509(n-2)
